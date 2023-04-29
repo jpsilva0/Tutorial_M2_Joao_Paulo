@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="antonio" id="Project-15ce" database="Sqlite" >
+	<schema name="INSTANCE" catalogname="antonio" >
+		<table name="Contato" >
+			<column name="E-mail" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Telefone" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Contato" prior="ID_-_Contato" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" prior="ID_-_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Contato" unique="PRIMARY_KEY" >
+				<column name="ID_Contato" />
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_contato_pessoa" virtual="y" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Experiência" prior="Realizações" >
+			<column name="Nome da empresa" prior="N" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Tempo exercido" prior="Temp" type="DATE" length="255" jt="91" mandatory="y" />
+			<column name="Cargo" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Atividades exercidas" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="ID_Experiência" prior="ID_Realizações" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Realizações" unique="PRIMARY_KEY" >
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_experiência_pessoa" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Formação" prior="Tbl" >
+			<column name="Curso" prior="Curs" type="INTEGER" jt="4" />
+			<column name="Tempo exercido" type="DATE" jt="91" mandatory="y" />
+			<column name="Instituição" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Diploma obtido" prior="Dipl" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="ID_Formação" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Formação" unique="PRIMARY_KEY" >
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_formação_pessoa" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Habilidades" prior="Tbl" >
+			<column name="Illustrator" type="INTEGER" length="2" jt="4" mandatory="y" />
+			<column name="Photoshop" prior="Ph" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Corel Draw" prior="Cp" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Dreamweaver" type="INTEGER" jt="4" mandatory="y" />
+			<column name="HTML/CSS3" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Habilidades" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Habilidades" unique="PRIMARY_KEY" >
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_habilidades_pessoa" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Personalidade" prior="Tbl" >
+			<column name="Personalidade 1" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Personalidade 2" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Personalidade 3" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Personalidade 4" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Personalidade 5" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="ID_Personalidade" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Personalidade" unique="PRIMARY_KEY" >
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_personalidade_pessoa" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+		<table name="Pessoa" >
+			<column name="Idade" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Nome" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="ID" type="INTEGER" jt="4" mandatory="y" />
+			<column name="Endereço" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Personalidade" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Foto" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Cargo" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<index name="pk_Juliana" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="Realizações" prior="Tbl" >
+			<column name="Título" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="Data" type="DATE" jt="91" mandatory="y" />
+			<column name="Descrição" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="ID_Pessoa" type="INTEGER" jt="4" mandatory="y" />
+			<column name="ID_Realizações" type="INTEGER" jt="4" mandatory="y" />
+			<index name="pk_Realizações_0" unique="PRIMARY_KEY" >
+				<column name="ID_Pessoa" />
+			</index>
+			<fk name="fk_realizações_pessoa" to_schema="antonio.INSTANCE" to_table="Pessoa" >
+				<fk_column name="ID_Pessoa" pk="ID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-2589" confirmed="y" show_relation="columns" >
+		<entity schema="antonio.INSTANCE" name="Contato" color="C1D8EE" x="512" y="48" />
+		<entity schema="antonio.INSTANCE" name="Experiência" color="3986C1" x="384" y="624" />
+		<entity schema="antonio.INSTANCE" name="Formação" color="C1D8EE" x="128" y="192" />
+		<entity schema="antonio.INSTANCE" name="Habilidades" color="C1D8EE" x="800" y="352" />
+		<entity schema="antonio.INSTANCE" name="Personalidade" color="C1D8EE" x="672" y="544" />
+		<entity schema="antonio.INSTANCE" name="Pessoa" color="C1D8EE" x="416" y="304" />
+		<entity schema="antonio.INSTANCE" name="Realizações" color="C1D8EE" x="48" y="416" />
+	</layout>
+</project>
